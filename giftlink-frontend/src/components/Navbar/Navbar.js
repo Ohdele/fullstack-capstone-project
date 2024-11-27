@@ -1,21 +1,29 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Navbar() {
-    return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <a className="navbar-brand" href="/">GiftLink</a>
+  return (
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <div className="container-fluid">
+        <Link className="navbar-brand" to="/">GiftLink</Link>
 
-            <div className="collapse navbar-collapse" id="navbarNav">
-                <ul className="navbar-nav">
-                    {/* Task 1: Add links to Home and Gifts below */}
-                    <li className="nav-item">
-                        <a className="nav-link" href="/home.html">Home</a> {/* Link to home.html */}
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="/app">Gifts</a> {/* Updated Link to MainPage */}
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    );
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <Link className="nav-link" to="/app">Home</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/app/search">Search</Link> {/* Added Search link */}
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/app/login">Login</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/app/register">Register</Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
 }
