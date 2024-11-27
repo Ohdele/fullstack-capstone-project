@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './DetailsPage.css';
+import {urlConfig} from '../../config';
 
 function DetailsPage() {
     const navigate = useNavigate();
@@ -10,17 +11,18 @@ function DetailsPage() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const authenticationToken = sessionStorage.getItem('authToken');
+        const authenticationToken = sessionStorage.getItem('auth-token');
         if (!authenticationToken) {
             // Task 1: Check for authentication and redirect
             navigate('/app/login');
         }
 
-        // Fetch the gift to be rendered on the details page
+        // get the gift to be rendered on the details page
         const fetchGift = async () => {
             try {
                 // Task 2: Fetch gift details
-                const response = await fetch(`/api/gifts/${productId}`);
+                const url = `${urlConfig.backendUrl}/api/gifts/${productId}`;
+                const response = await fetch(url);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -37,6 +39,7 @@ function DetailsPage() {
 
         // Task 3: Scroll to top on component mount
         window.scrollTo(0, 0);
+
     }, [productId, navigate]);
 
     const handleBackClick = () => {
@@ -44,7 +47,7 @@ function DetailsPage() {
         navigate(-1);
     };
 
-    // The comments have been hardcoded for this project.
+    //The comments have been hardcoded for this project.
     const comments = [
         {
             author: "John Doe",
@@ -89,11 +92,21 @@ function DetailsPage() {
                         )}
                     </div>
                     {/* Task 6: Display gift details */}
-                    <p><strong>Category:</strong> {gift.category}</p>
-                    <p><strong>Condition:</strong> {gift.condition}</p>
-                    <p><strong>Date Added:</strong> {gift.dateAdded}</p>
-                    <p><strong>Age (Years):</strong> {gift.age}</p>
-                    <p><strong>Description:</strong> {gift.description}</p>
+                    <p><strong>Category:</strong> 
+                        {gift.category}
+                    </p>
+                    <p><strong>Condition:</strong> 
+                        {gift.condition}
+                    </p>
+                    <p><strong>Date Added:</strong> 
+                        {gift.dateAdded}
+                    </p>
+                    <p><strong>Age (Years):</strong> 
+                        {gift.age}
+                    </p>
+                    <p><strong>Description:</strong> 
+                        {gift.description}
+                    </p>
                 </div>
             </div>
             <div className="comments-section mt-4">
