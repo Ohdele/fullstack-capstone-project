@@ -1,32 +1,37 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mongodb-deployment
+  name: giftapp
+  labels:
+    app: giftapp
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: mongodb
+      app: giftapp
   template:
     metadata:
       labels:
-        app: mongodb
+        app: giftapp
     spec:
       containers:
-      - name: mongodb
-        image: mongo:latest
+      - name: giftapp-container
+        image: us.icr.io/sn-labs-adesinaayode/giftapp
         ports:
-        - containerPort: 27017
+        - containerPort: 3060
+      imagePullSecrets:
+      - name: icr
+
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: mongodb-service
+  name: gift-app-service
 spec:
   type: NodePort
   ports:
-  - port: 27017
-    targetPort: 27017
-    nodePort: 30008  # Updated nodePort
+  - port: 80
+    targetPort: 3060
+    protocol: TCP
   selector:
-    app: mongodb
+    app: giftapp
