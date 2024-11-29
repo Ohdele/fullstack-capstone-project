@@ -1,1 +1,2 @@
+<<<<<<< HEAD
 # coding-project-template
