@@ -1,17 +1,22 @@
-import { defineConfig } from 'eslint';
-
-export default defineConfig({
-  languageOptions: {
-    globals: {
-      // Define global variables here (e.g., node: true)
+// eslint.config.js
+module.exports = {
+  overrides: [
+    {
+      files: ['*.js'],
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+      },
+      env: {
+        browser: true,
+        node: true,
+        es2021: true,
+      },
+      extends: ['eslint:recommended'],
+      rules: {
+        'no-console': 'warn',
+        'no-unused-vars': 'warn',
+      },
     },
-  },
-  extends: ['eslint:recommended'],
-  parserOptions: {
-    ecmaVersion: 2020,
-    sourceType: 'module',
-  },
-  rules: {
-    // Add any specific rules you want to enforce here
-  },
-});
+  ],
+};
