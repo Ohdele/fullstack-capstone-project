@@ -1,22 +1,17 @@
-// eslint.config.js
-module.exports = {
-  env: {
-    browser: true,
-    es2021: true,
+import { defineConfig } from 'eslint';
+
+export default defineConfig({
+  languageOptions: {
+    globals: {
+      // Define global variables here (e.g., node: true)
+    },
   },
-  extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-  ],
+  extends: ['eslint:recommended'],
   parserOptions: {
-    ecmaVersion: 'latest',
+    ecmaVersion: 2020,
     sourceType: 'module',
   },
-  plugins: [
-    'react',
-  ],
   rules: {
-    'no-unused-vars': 'warn',
-    'no-console': 'off',
+    // Add any specific rules you want to enforce here
   },
-};
+});
